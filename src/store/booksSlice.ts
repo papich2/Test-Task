@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// Твой ключ из скриншота уже вставлен
 const API_KEY = 'AIzaSyAd6dhgrYNyVhwnxjLdlsk5taZJKZz3fkE';
 const BASE_URL = 'https://www.googleapis.com/books/v1/volumes';
 
@@ -56,7 +55,6 @@ export const fetchBooks = createAsyncThunk(
   'books/fetchBooks',
   async ({ query, category, sort, startIndex }: FetchParams) => {
     const categoryQuery = category === 'all' ? '' : `+subject:${category}`;
-    // Параметр langRestrict=ru поможет найти книги на русском
     const url = `${BASE_URL}?q=${query}${categoryQuery}&orderBy=${sort}&startIndex=${startIndex}&maxResults=30&key=${API_KEY}`;
     const response = await axios.get(url);
     return response.data;
@@ -101,7 +99,7 @@ const booksSlice = createSlice({
           } else {
             state.items = [...state.items, ...action.payload.items];
           }
-          state.startIndex += 30; // Увеличиваем шаг пагинации
+          state.startIndex += 30; 
         }
         state.totalItems = action.payload.totalItems || 0;
       })
