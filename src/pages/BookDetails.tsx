@@ -25,7 +25,7 @@ const BookDetails: React.FC = () => {
     document.title = `${currentBook.volumeInfo.title} | Modsen Books`;
   }
   return () => {
-    document.title = 'Modsen Books'; // Возвращаем назад при уходе со страницы
+    document.title = 'Modsen Books'; 
   };
 }, [currentBook]);
 
