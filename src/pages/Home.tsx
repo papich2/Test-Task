@@ -9,7 +9,6 @@ const Home: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { items, totalItems, status, currentQuery, currentCategory, currentSort, startIndex, error } = useSelector((state: RootState) => state.books);
 
-  // Чтобы главная не была пустой, загружаем "JS" по умолчанию
   useEffect(() => {
     if (items.length === 0 && status === 'idle') {
       const q = 'JS';
